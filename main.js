@@ -1,70 +1,52 @@
 'use strict';
 
-const ingredients: {
-    recipe: {
-        name: "Risotto de setas (vegano)",
-        shipping-cost: 7,
-        currency: "€",
-        ingredients: [
-            {
-                product: "Margarina de maíz",
-                brand: "Artua",
-                items: 1,
-                quantity: "600 gr.",
-                price: 2.95
-            },
-            {
-                product: "Arroz de Valencia",
-                brand: "De Nuestra Tierra",
-                items: 1,
-                quantity: "1 kg.",
-                price: 2.4
-            },
-            {
-                product: "Caldo de verduras natural",
-                brand: "Aneto",
-                items: 1,
-                quantity: "1 l.",
-                price: 3.6
-            },
-            {
-                product: "Seta Shiitake ecológica",
-                items: 1,
-                quantity: "200 gr.",
-                price: 3.55
-            },
-            {
-                product: "Paragoce, vino blanco",
-                brand: "Verdejo D.O. Rueda",
-                items: 1,
-                quantity: "0,57 cl.",
-                price: 5.85
-            },
-            {
-                product: "Ajo",
-                items: 1,
-                quantity: "270 gr.",
-                price: 1.49
-            },
-            {
-                product: "Cebolla chalotas",
-                items: 1,
-                quantity: "200 gr.",
-                price: 2.99
-            }
-        ]
-    }
-}
 
-function serching() {
-//    recorrer ingredients (map) y pintar en el espacio
-            series.innerHTML = '';
-            for (let i = 0; i < data.length; i++) {
+
+const test = document.querySelector('.buy-container');
+
+    window.onload = function() {
+        const ingredients= [
+            {
+                score: 19.180931,
+                show: {
+                    id: 431,
+                    url: "http://www.tvmaze.com/shows/431/friends",
+                    name: "Friends",
+                    type: "Scripted",
+                    language: "English",
+                    genres: [
+                        "Comedy",
+                        "Romance"
+                    ],
+                    status: "Ended",
+                    runtime: 30,
+                    premiered: "1994-09-22",
+                    officialSite: null,
+                    schedule: {
+                        time: "20:00",
+                        days: [
+                            "Thursday"
+                        ]
+                    },
+                }];
+
+   // recorrer ingredients (map) y pintar en el espacio
+        return (
+            { indredients.map (item => {
+                    return (
+                        console.log(item.show.name);
+                        // test.innerHTML = item.recipe
+                    )
+                })}
+        )
+
+
+
+            // for (let i = 0; i < data.length; i++) {
                 // variable que hace referencia al id, el name y la imagen.
-                let serieInfo = {
-                    id: data[i].show.id,
-                    name: data[i].show.name,
-                };
-                }
-                series.innerHTML += generateSerieContent(serieInfo);
-}
+                // let serieInfo = {
+                //     id: data[i].show.id,
+                //     name: data[i].show.name,
+                // };
+                // }
+};
