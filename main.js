@@ -1,52 +1,35 @@
 'use strict';
 
+const ingredientsContainer = document.querySelector('.ingredients-container');
+const url = "./ingredientsList.json";
+
+window.onload = function() {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // // recorrer ingredients (map) y pintar en el espacio
+          data.recipe.ingredients.map ((item, index) => {
+             console.log(item.product);
+             ingredientsContainer.innerHTML += `<div id="${index}">${item.product}</div><div>${item.price}<div>`;
+              //TODO Crear una estructura HTML con los datos del ingrediente:
+              //crear div que contenga: checkbox(con id), input para la cantidad, nombre, marca y precio unitario,
+              // y al final, un div con el precio de ese producto multiplicado por la cantidad
+         })
 
 
-const test = document.querySelector('.buy-container');
-
-    window.onload = function() {
-        const ingredients= [
-            {
-                score: 19.180931,
-                show: {
-                    id: 431,
-                    url: "http://www.tvmaze.com/shows/431/friends",
-                    name: "Friends",
-                    type: "Scripted",
-                    language: "English",
-                    genres: [
-                        "Comedy",
-                        "Romance"
-                    ],
-                    status: "Ended",
-                    runtime: 30,
-                    premiered: "1994-09-22",
-                    officialSite: null,
-                    schedule: {
-                        time: "20:00",
-                        days: [
-                            "Thursday"
-                        ]
-                    },
-                }];
-
-   // recorrer ingredients (map) y pintar en el espacio
-        return (
-            { indredients.map (item => {
-                    return (
-                        console.log(item.show.name);
-                        // test.innerHTML = item.recipe
-                    )
-                })}
-        )
-
-
-
-            // for (let i = 0; i < data.length; i++) {
-                // variable que hace referencia al id, el name y la imagen.
-                // let serieInfo = {
-                //     id: data[i].show.id,
-                //     name: data[i].show.name,
-                // };
-                // }
+            // for (let i = 0; i < data.length; i++) {`
+            // variable que hace referencia al id, el name y la imagen.
+            // let serieInfo = {
+            //     id: data[i].show.id,
+            //     name: data[i].show.name,
+            // };
+            // }
+        });
 };
+function actualizarPrecioIngrediente(element){
+
+}
+
+ingredientsContainer.addEventListener('click', actualizarPrecioIngrediente);
+ingredientsContainer2.addEventListener('change', actualizarPrecioIngrediente);
