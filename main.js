@@ -1,6 +1,6 @@
 'use strict';
 
-const ingredientsContainer = document.querySelector('.ingredients-container');
+const ingredientsContainer = document.querySelector('.items-container');
 const url = "./ingredientsList.json";
 
 window.onload = function() {
@@ -11,7 +11,10 @@ window.onload = function() {
             // // recorrer ingredients (map) y pintar en el espacio
           data.recipe.ingredients.map ((item, index) => {
              console.log(item.product);
-             ingredientsContainer.innerHTML += `<div id="${index}">${item.product}</div><div>${item.price}<div>`;
+             ingredientsContainer.innerHTML +=
+                 `<div class="item-container"><input class="item" type="checkbox" name="ingredient1" value="ingredient" id="${index}">${item.product}</input>
+                  <input class="item-amount" type="text" name="" value="" placeholder="1">
+                  <div class="item-price">${item.price} €<div></div>`;
               //TODO Crear una estructura HTML con los datos del ingrediente:
               //crear div que contenga: checkbox(con id), input para la cantidad, nombre, marca y precio unitario,
               // y al final, un div con el precio de ese producto multiplicado por la cantidad
