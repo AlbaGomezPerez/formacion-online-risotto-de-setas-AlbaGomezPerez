@@ -8,7 +8,7 @@
     background-image: url("./images/rice.jpg");
     background-position: bottom;
     background-size: 2200px;
-    width: 35%;
+    width: 45%;
     height: 90%;
     margin: auto;
     border-radius: 10%;
@@ -57,13 +57,22 @@
 
 .item-container{
     display: flex;
-    margin-top: 5%;
+    margin-top: 4%;
+}
+
+.item{
+    margin-left: 8%;
+
 }
 .item-amount{
     border-radius: 20%;
     height: 20px;
     width: 20px;
+    margin-left: 2%;
 }
 
 .item-price{
+    margin: auto;
+    margin-right: 10%;
+
 }

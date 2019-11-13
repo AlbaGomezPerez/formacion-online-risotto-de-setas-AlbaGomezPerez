@@ -12,9 +12,11 @@ window.onload = function() {
           data.recipe.ingredients.map ((item, index) => {
              console.log(item.product);
              ingredientsContainer.innerHTML +=
-                 `<div class="item-container"><input class="item" type="checkbox" name="ingredient1" value="ingredient" id="${index}">${item.product}</input>
-                  <input class="item-amount" type="text" name="" value="" placeholder="1">
-                  <div class="item-price">${item.price} €<div></div>`;
+                 `<div class="item-container">
+                      <input class="item-amount" type="text" name="" value="" placeholder="1">    
+                      <input class="item" type="checkbox" name="ingredient1" value="ingredient" id="${index}">${item.product}</input>
+                      <div class="item-price">${item.price} €<div>
+                  </div>`;
               //TODO Crear una estructura HTML con los datos del ingrediente:
               //crear div que contenga: checkbox(con id), input para la cantidad, nombre, marca y precio unitario,
               // y al final, un div con el precio de ese producto multiplicado por la cantidad
