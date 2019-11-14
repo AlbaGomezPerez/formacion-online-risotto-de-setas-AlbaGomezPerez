@@ -8,11 +8,9 @@ window.onload = function() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
 
             // // recorrer ingredients (map) y pintar en el espacio
           data.recipe.ingredients.map ((item, index) => {
-             console.log(item.product);
              ingredientsContainer.innerHTML +=
                  `<div class="item-container">
                       <input class="item-amount" type="text" name="" value="" placeholder="1">    
@@ -25,8 +23,10 @@ window.onload = function() {
               //crear div que contenga: checkbox(con id), input para la cantidad, nombre, marca y precio unitario,
               // y al final, un div con el precio de ese producto multiplicado por la cantidad
          })
-            const inputAmount = document.querySelector('.item-amount');
+            const inputAmount = document.querySelectorAll('.item-amount');
+            const priceIndividually = document.querySelector('.item-totalPrice');
             inputAmount.addEventListener('change', updateIngredientPrice);
+            console.log(inputAmount);
         });
 };
 
@@ -34,6 +34,8 @@ window.onload = function() {
 
 function updateIngredientPrice(element){
     console.log('funciono');
+
+
 }
 
 
