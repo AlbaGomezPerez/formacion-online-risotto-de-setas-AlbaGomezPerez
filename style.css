@@ -75,7 +75,6 @@
 }
 
 .text-priceTotally{
-
 }
 
 .item-container{
@@ -96,6 +95,17 @@
 
 .item-price{
     margin: auto;
-    margin-right: 25%;
+    margin-right: 1%;
+}
 
+.item-totalPrice{
+    margin: auto;
+    position: absolute;
+    margin-left: 60%;
+}
+
+
+/*SUM SECTION*/
+.sum-container{
+    background-color: green;
 }

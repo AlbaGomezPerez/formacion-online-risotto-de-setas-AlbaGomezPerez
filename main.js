@@ -1,6 +1,7 @@
 'use strict';
 
 const ingredientsContainer = document.querySelector('.items-container');
+// const checkItem = document.querySelector('.item');
 const url = "./ingredientsList.json";
 
 window.onload = function() {
@@ -8,6 +9,7 @@ window.onload = function() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
+
             // // recorrer ingredients (map) y pintar en el espacio
           data.recipe.ingredients.map ((item, index) => {
              console.log(item.product);
@@ -15,26 +17,29 @@ window.onload = function() {
                  `<div class="item-container">
                       <input class="item-amount" type="text" name="" value="" placeholder="1">    
                       <input class="item" type="checkbox" name="ingredient1" value="ingredient" id="${index}">${item.product}</input>
+                      <div class="item-totalPrice">hola</div>
                       <div class="item-price">${item.price} €<div>
                   </div>`;
+
               //TODO Crear una estructura HTML con los datos del ingrediente:
               //crear div que contenga: checkbox(con id), input para la cantidad, nombre, marca y precio unitario,
               // y al final, un div con el precio de ese producto multiplicado por la cantidad
          })
-
-
-            // for (let i = 0; i < data.length; i++) {`
-            // variable que hace referencia al id, el name y la imagen.
-            // let serieInfo = {
-            //     id: data[i].show.id,
-            //     name: data[i].show.name,
-            // };
-            // }
+            const inputAmount = document.querySelector('.item-amount');
+            inputAmount.addEventListener('change', updateIngredientPrice);
         });
 };
-function actualizarPrecioIngrediente(element){
 
+
+
+function updateIngredientPrice(element){
+    console.log('funciono');
 }
 
-ingredientsContainer.addEventListener('click', actualizarPrecioIngrediente);
-ingredientsContainer2.addEventListener('change', actualizarPrecioIngrediente);
+
+
+//cuando se clicka el ingrediente
+// checkItem.addEventListener('onclick', updateIngredientPrice);
+
+//cuando se cambia el input de cantidad
+// inputAmount.addEventListener('change', updateIngredientPrice);
