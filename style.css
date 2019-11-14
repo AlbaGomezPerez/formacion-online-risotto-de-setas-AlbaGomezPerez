@@ -8,7 +8,7 @@
     background-image: url("./images/rice.jpg");
     background-position: bottom;
     background-size: 2200px;
-    width: 45%;
+    width: 60%;
     height: 90%;
     margin: auto;
     border-radius: 10%;
@@ -55,6 +55,29 @@
     font-size: 18px;
 }
 
+.text-items{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.text-amoung{
+    margin-left: 2%;
+}
+
+.text-ingredient{
+    margin-left: 2%;
+}
+
+.text-priceOne{
+    margin-left: 16%;
+
+}
+
+.text-priceTotally{
+
+}
+
 .item-container{
     display: flex;
     margin-top: 4%;
@@ -68,11 +91,11 @@
     border-radius: 20%;
     height: 20px;
     width: 20px;
-    margin-left: 2%;
+    margin-left: 4%;
 }
 
 .item-price{
     margin: auto;
-    margin-right: 10%;
+    margin-right: 25%;
 
 }
