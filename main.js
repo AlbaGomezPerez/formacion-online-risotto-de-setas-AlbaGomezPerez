@@ -13,7 +13,7 @@ window.onload = function() {
           data.recipe.ingredients.map ((item, index) => {
              ingredientsContainer.innerHTML +=
                  `<div class="item-container">
-                      <input class="item-amount" type="text" name="" placeholder="1">   
+                      <input class="item-amount" type="number" name="" placeholder="1">   
                       <input class="item" type="checkbox" name="ingredient1" value="ingredient" id="${index}">${item.product}</input>
                       <div class="item-totalPrice">3</div>
                       <div class="item-price">${item.price} €<div>
@@ -24,24 +24,33 @@ window.onload = function() {
               // y al final, un div con el precio de ese producto multiplicado por la cantidad
          });
 
-            // const inputAmount = document.querySelectorAll('.item-amount');
-            // inputAmount.addEventListener('change', updateIngredientPrice);
+            const inputAmount = document.querySelector('.item-amount');
+            inputAmount.addEventListener('change', newupdateIngredientPrice);
 
             const checkbox = document.querySelector('.item');
             checkbox.addEventListener('click', updateIngredientPrice);
-            checkbox.addEventListener('click', subtotalPrice);
+            // checkbox.addEventListener('click', subtotalPrice);
         });
 };
 
-
-
+// function about checkbox checked
 function updateIngredientPrice(element){
-    // function about checkbox checked
     const itemPrice = document.querySelector('.item-totalPrice');
-    // console.log(element.currentTarget.checked);
+    const inputAmount = document.querySelector('.item-amount');
+    if (element.currentTarget.checked === 'true') {
+
+    }
+
+    console.log('el check está en: ' + element.currentTarget.checked);
+}
+
 //    function about input value
-//     itemPrice.innerHTML = element.currentTarget.value;
-    console.log(element.currentTarget.value);
+function newupdateIngredientPrice(element){
+    const itemPrice = document.querySelector('.item-totalPrice');
+    const defaultItemPrice = document.querySelector('.item-price');
+
+    itemPrice.innerHTML = element.currentTarget.value;
+    console.log('soy el valor del input-cantidad: ' + element.currentTarget.value);
 }
 
 //function which give amount of items that it had been checked
