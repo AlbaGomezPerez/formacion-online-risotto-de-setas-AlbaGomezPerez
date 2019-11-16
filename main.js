@@ -26,7 +26,7 @@ window.onload = function() {
          });
 
             const inputAmount = document.querySelector('.item-amount');
-            inputAmount.addEventListener('change', newupdateIngredientPrice);
+            inputAmount.addEventListener('change', updateIngredientPrice);
 
             const checkbox = document.querySelector('.item');
             checkbox.addEventListener('click', updateIngredientPrice);
@@ -36,28 +36,18 @@ window.onload = function() {
 
 // function about checkbox checked
 function updateIngredientPrice(element) {
-    //al hacer check se tiene que poner el precio total como el valor del precio/unidad.
-    //Llamar aquí a la función del input de cantidad
+    const checkbox = document.querySelector('.item');
     const unitPrice = document.querySelector('.item-unitPrice');
     const inputAmount = document.querySelector('.item-amount');
     const totalPrice = document.querySelector('.item-totalPrice');
-    console.log(element.currentTarget.checked);
-    if (element.currentTarget.checked === true) {
+
+    if (checkbox.checked === true) {
         totalPrice.innerHTML = parseInt(inputAmount.value) * parseFloat(unitPrice.innerHTML);
     } else {
         totalPrice.innerHTML = '0 €';
     }
-
 }
 
-//    function about input value
-function newupdateIngredientPrice(element) {
-    const totalPrice = document.querySelector('.item-totalPrice');
-    const unitPrice = document.querySelector('.item-unitPrice');
-
-    totalPrice.innerHTML = parseInt(element.currentTarget.value) * parseFloat(unitPrice.innerHTML);
-
-}
 
 //function which give amount of items that it had been checked
 function amountItems() {
