@@ -13,7 +13,7 @@ window.onload = function() {
           data.recipe.ingredients.map ((item, index) => {
              ingredientsContainer.innerHTML +=
                  `<div class="item-container">
-                      <input class="item-amount" type="text" name="" placeholder="1" id="quantity_${index}">   
+                      <input class="item-amount" type="text" name="" value="1" id="quantity_${index}">   
                       <input class="item" type="checkbox" name="ingredient1" value="ingredient" id="checkbox_${index}">${item.product}</input>
                       <div class="item-unitPrice">${item.price} €</div>
                       <div class="item-totalPrice" id="price_${index}"> 0 €</div>
@@ -30,7 +30,7 @@ window.onload = function() {
 
             const checkbox = document.querySelector('.item');
             checkbox.addEventListener('click', updateIngredientPrice);
-            checkbox.addEventListener('click', subtotalPrice);
+            // checkbox.addEventListener('click', subtotalPrice);
         });
 };
 
@@ -38,20 +38,20 @@ window.onload = function() {
 function updateIngredientPrice(element) {
     //al hacer check se tiene que poner el precio total como el valor del precio/unidad.
     //Llamar aquí a la función del input de cantidad
-    const finallItemPrice = document.querySelector('.item-unitPrice');
+    const unitPrice = document.querySelector('.item-unitPrice');
     const inputAmount = document.querySelector('.item-amount');
-    const itemPrice = document.querySelector('.item-totalPrice');
-    if (element.currentTarget.checked === 'false') {
-        finallItemPrice.innerHTML = itemPrice.value;
+    const totalPrice = document.querySelector('.item-totalPrice');
+    console.log(element.currentTarget.checked);
+    if (element.currentTarget.checked === true) {
+        totalPrice.innerHTML = parseInt(inputAmount.value) * parseFloat(unitPrice.innerHTML);
     } else {
-        finallItemPrice.innerHTML = inputAmount.value;
+        totalPrice.innerHTML = '0 €';
     }
+
 }
 
 //    function about input value
 function newupdateIngredientPrice(element) {
-    //al modificar la cantidad, hay que multiplicar el valor del precio/unidad por el número de cantidad.
-    //Ese dato meterlo en el valor total del producto
     const totalPrice = document.querySelector('.item-totalPrice');
     const unitPrice = document.querySelector('.item-unitPrice');
 
@@ -66,12 +66,12 @@ function amountItems() {
 }
 
 //function which give subtotalPrice
-function subtotalPrice(){
-    const totalIngredientPrice = document.querySelector('.item-unitPrice');
-    console.log(totalIngredientPrice.currentTarget.value);
+// function subtotalPrice(){
+//     const totalIngredientPrice = document.querySelector('.item-unitPrice');
+//     console.log(totalIngredientPrice.currentTarget.value);
     // subtotal.innerHTML = totalIngredientPrice.currentTarget.value;
 //    hay que recoger el valor de todos los valor total del producto y sumarlas, el restultado guardarlo aqui
-}
+// }
 
 //function which give total price to buy
 function totalPrice() {
