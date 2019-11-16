@@ -13,10 +13,10 @@ window.onload = function() {
           data.recipe.ingredients.map ((item, index) => {
              ingredientsContainer.innerHTML +=
                  `<div class="item-container">
-                      <input class="item-amount" type="text" name="" value="1" id="quantity_${index}">   
-                      <input class="item" type="checkbox" name="ingredient1" value="ingredient" id="checkbox_${index}">${item.product}</input>
-                      <div class="item-unitPrice">${item.price} €</div>
-                      <div class="item-totalPrice" id="price_${index}"> 0 €</div>
+                      <input class="item-amount" type="text" value="1" id="quantity_${index}">   
+                      <input class="item" type="checkbox" name="ingredient1" id="checkbox_${index}">${item.product}</input>
+                      <div class="item-unitPrice" id="unitPrice_${index}">${item.price} €</div>
+                      <div class="item-totalPrice" id="totalPrice_${index}"> 0 €</div>
 
                   </div>`;
 
@@ -25,24 +25,33 @@ window.onload = function() {
               // y al final, un div con el precio de ese producto multiplicado por la cantidad
          });
 
-            const inputAmount = document.querySelector('.item-amount');
-            inputAmount.addEventListener('change', updateIngredientPrice);
 
-            const checkbox = document.querySelector('.item');
-            checkbox.addEventListener('click', updateIngredientPrice);
+            for (let inputAmount of document.querySelectorAll('.item-amount')){
+                inputAmount.addEventListener('change', updateIngredientPrice);
+            }
+
+            for (let checkbox of document.querySelectorAll('.item')){
+                checkbox.addEventListener('click', updateIngredientPrice);
+            }
+
             // checkbox.addEventListener('click', subtotalPrice);
         });
 };
 
-// function about checkbox checked
+// function about checkbox checked. ToFixed is used to define number of the decimals
 function updateIngredientPrice(element) {
-    const checkbox = document.querySelector('.item');
-    const unitPrice = document.querySelector('.item-unitPrice');
-    const inputAmount = document.querySelector('.item-amount');
-    const totalPrice = document.querySelector('.item-totalPrice');
+    let id = (element.currentTarget.id).replace('checkbox_', '');
+    id = (id).replace('quantity_', '');
+
+    const checkbox = document.querySelector('#checkbox_' + id);
+    const unitPrice = document.querySelector('#unitPrice_' + id);
+    const inputAmount = document.querySelector('#quantity_' + id);
+    const totalPrice = document.querySelector('#totalPrice_' + id);
+
+
 
     if (checkbox.checked === true) {
-        totalPrice.innerHTML = parseInt(inputAmount.value) * parseFloat(unitPrice.innerHTML);
+        totalPrice.innerHTML = (parseInt(inputAmount.value) * parseFloat(unitPrice.innerHTML)).toFixed(2);
     } else {
         totalPrice.innerHTML = '0 €';
     }
