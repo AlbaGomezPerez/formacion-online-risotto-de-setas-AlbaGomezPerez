@@ -13,10 +13,11 @@ window.onload = function() {
           data.recipe.ingredients.map ((item, index) => {
              ingredientsContainer.innerHTML +=
                  `<div class="item-container">
-                      <input class="item-amount" type="number" name="" placeholder="1">   
-                      <input class="item" type="checkbox" name="ingredient1" value="ingredient" id="${index}">${item.product}</input>
-                      <div class="item-totalPrice">3</div>
-                      <div class="item-price">${item.price} €<div>
+                      <input class="item-amount" type="text" name="" placeholder="1" id="quantity_${index}">   
+                      <input class="item" type="checkbox" name="ingredient1" value="ingredient" id="checkbox_${index}">${item.product}</input>
+                      <div class="item-unitPrice">${item.price} €</div>
+                      <div class="item-totalPrice" id="price_${index}"> 0 €</div>
+
                   </div>`;
 
               //TODO Crear una estructura HTML con los datos del ingrediente:
@@ -29,39 +30,47 @@ window.onload = function() {
 
             const checkbox = document.querySelector('.item');
             checkbox.addEventListener('click', updateIngredientPrice);
-            // checkbox.addEventListener('click', subtotalPrice);
+            checkbox.addEventListener('click', subtotalPrice);
         });
 };
 
 // function about checkbox checked
-function updateIngredientPrice(element){
-    const itemPrice = document.querySelector('.item-totalPrice');
+function updateIngredientPrice(element) {
+    //al hacer check se tiene que poner el precio total como el valor del precio/unidad.
+    //Llamar aquí a la función del input de cantidad
+    const finallItemPrice = document.querySelector('.item-unitPrice');
     const inputAmount = document.querySelector('.item-amount');
-    if (element.currentTarget.checked === 'true') {
-
+    const itemPrice = document.querySelector('.item-totalPrice');
+    if (element.currentTarget.checked === 'false') {
+        finallItemPrice.innerHTML = itemPrice.value;
+    } else {
+        finallItemPrice.innerHTML = inputAmount.value;
     }
-
-    console.log('el check está en: ' + element.currentTarget.checked);
 }
 
 //    function about input value
-function newupdateIngredientPrice(element){
-    const itemPrice = document.querySelector('.item-totalPrice');
-    const defaultItemPrice = document.querySelector('.item-price');
+function newupdateIngredientPrice(element) {
+    //al modificar la cantidad, hay que multiplicar el valor del precio/unidad por el número de cantidad.
+    //Ese dato meterlo en el valor total del producto
+    const totalPrice = document.querySelector('.item-totalPrice');
+    const unitPrice = document.querySelector('.item-unitPrice');
 
-    itemPrice.innerHTML = element.currentTarget.value;
-    console.log('soy el valor del input-cantidad: ' + element.currentTarget.value);
+    totalPrice.innerHTML = parseInt(element.currentTarget.value) * parseFloat(unitPrice.innerHTML);
+
 }
 
 //function which give amount of items that it had been checked
 function amountItems() {
+//    recorrer todos los checkbox y contar cuantos hay en True. Bucle y luego un lenght?
+//    meterlo en el sumItems
 }
 
 //function which give subtotalPrice
 function subtotalPrice(){
-    const totalIngredientPrice = document.querySelectorAll('.item-totalPrice');
+    const totalIngredientPrice = document.querySelector('.item-unitPrice');
     console.log(totalIngredientPrice.currentTarget.value);
     // subtotal.innerHTML = totalIngredientPrice.currentTarget.value;
+//    hay que recoger el valor de todos los valor total del producto y sumarlas, el restultado guardarlo aqui
 }
 
 //function which give total price to buy

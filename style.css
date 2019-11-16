@@ -108,15 +108,16 @@
     margin-left: 4%;
 }
 
-.item-price{
+.item-unitPrice{
     margin: auto;
-    margin-right: 1%;
+    position: absolute;
+    margin-left: 59%;
 }
 
 .item-totalPrice{
     margin: auto;
     position: absolute;
-    margin-left: 60%;
+    margin-left: 79%;
 }
 
 
