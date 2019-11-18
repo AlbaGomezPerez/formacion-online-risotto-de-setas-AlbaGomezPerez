@@ -89,7 +89,7 @@ function calculateItemPrice(element) {
     const inputAmount = document.querySelector('#quantity_' + id);
     const totalPrice = document.querySelector('#totalPrice_' + id);
 
-    if (checkbox.checked === true) {
+    if (checkbox.checked === true && inputAmount.value !== '') {
         totalPrice.innerHTML = (parseInt(inputAmount.value) * parseFloat(unitPrice.innerHTML)).toFixed(2);
     } else {
         totalPrice.innerHTML = '0 €';
