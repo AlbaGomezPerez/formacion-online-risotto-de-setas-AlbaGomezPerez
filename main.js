@@ -5,6 +5,8 @@ const subtotal = document.querySelector('.subtotal');
 const shipping = document.querySelector('.shipping');
 const total = document.querySelector('.total');
 const buy = document.querySelector('.buy-text');
+const currencies = document.querySelectorAll('.currency');
+let currency = '';
 const url = "./ingredientsList.json";
 
 /**
@@ -35,16 +37,26 @@ function generateIngredientHTML(index, item) {
     return `<div class="item-container">
                       <input class="item-amount" type="text" value="1" id="quantity_${index}">   
                       <input class="item" type="checkbox" id="checkbox_${index}"><span class="ingredientName">${item.product}</span></input>
-                      <div class="item-unitPrice" id="unitPrice_${index}">${item.price} €</div>
-                      <div class="item-totalPrice" id="totalPrice_${index}"> 0 €</div>
+                      <div class="item-unitPrice" id="unitPrice_${index}">${item.price} ${currency}</div>
+                      <div class="item-totalPrice" id="totalPrice_${index}"> 0 ${currency}</div>
 
                   </div>`;
+}
+
+function setCurrency() {
+    for (let currencies of document.querySelectorAll('.currency')) {
+        currencies.innerHTML = currency;
+    }
 }
 
 window.onload = function () {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            currency = data.recipe.currency;
+
+            setCurrency();
+
             data.recipe.ingredients.map((item, index) => {
                 ingredientsContainer.innerHTML += generateIngredientHTML(index, item);
             });
@@ -90,9 +102,9 @@ function calculateItemPrice(element) {
     const totalPrice = document.querySelector('#totalPrice_' + id);
 
     if (checkbox.checked === true && inputAmount.value !== '') {
-        totalPrice.innerHTML = (parseInt(inputAmount.value) * parseFloat(unitPrice.innerHTML)).toFixed(2) + '€';
+        totalPrice.innerHTML = (parseInt(inputAmount.value) * parseFloat(unitPrice.innerHTML)).toFixed(2) + currency;
     } else {
-        totalPrice.innerHTML = '0 €';
+        totalPrice.innerHTML = '0 ' + currency;
     }
 }
 
@@ -106,7 +118,7 @@ function calculateTotalPrice() {
 
     if(calculateTotalItems() > 0){
         total.innerHTML = parseFloat(shippingSum);
-        buy.innerHTML = 'Comprar ingredientes ' + parseFloat(shippingSum);
+        buy.innerHTML = 'Comprar ingredientes ' + parseFloat(shippingSum) + ' ' + currency;
     } else{
         total.innerHTML = 0;
         buy.innerHTML = 'Escoge un ingrediente';
