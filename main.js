@@ -34,7 +34,7 @@ function createCheckboxEvents() {
 function generateIngredientHTML(index, item) {
     return `<div class="item-container">
                       <input class="item-amount" type="text" value="1" id="quantity_${index}">   
-                      <input class="item" type="checkbox" name="ingredient1" id="checkbox_${index}">${item.product}</input>
+                      <input class="item" type="checkbox" id="checkbox_${index}"><span class="ingredientName">${item.product}</span></input>
                       <div class="item-unitPrice" id="unitPrice_${index}">${item.price} €</div>
                       <div class="item-totalPrice" id="totalPrice_${index}"> 0 €</div>
 
@@ -90,7 +90,7 @@ function calculateItemPrice(element) {
     const totalPrice = document.querySelector('#totalPrice_' + id);
 
     if (checkbox.checked === true && inputAmount.value !== '') {
-        totalPrice.innerHTML = (parseInt(inputAmount.value) * parseFloat(unitPrice.innerHTML)).toFixed(2);
+        totalPrice.innerHTML = (parseInt(inputAmount.value) * parseFloat(unitPrice.innerHTML)).toFixed(2) + '€';
     } else {
         totalPrice.innerHTML = '0 €';
     }

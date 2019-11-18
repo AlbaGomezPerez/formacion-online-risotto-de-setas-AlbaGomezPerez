@@ -22,7 +22,7 @@
     margin-left: 5%;
     padding-left: 5%;
     width: 90%;
-    height: 70%;
+    height: 64%;
     position: relative;
     top: 10%;
     border-radius: 10%;
@@ -99,7 +99,7 @@
 
 .item{
     margin-left: 4%;
-
+    height: 20px;
 }
 .item-amount{
     border-radius: 20%;
@@ -128,17 +128,23 @@
     width: 100%;
     margin-left: 10%;
     position: relative;
-    top: -66%;
+    top: -60%;
     border-radius: 10%;
     z-index: 0;
 }
 
 .sum-text-container{
     position: absolute;
-    top: 79%;
+    top: 75%;
     margin-left: 15%;
     color: black;
     opacity: 1;
+}
+
+.ingredientName {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
 }
 
 .sum-text{
@@ -209,13 +215,13 @@
     background-color: #f87e68;
     position: relative;
     top: 80%;
-    width: 90%;
-    height: 6%;
+    width: 80%;
     margin: auto;
-    margin-top: 6%;
-    padding-top: 3%;
+    margin-top: 8%;
+    margin-left: 10%;
     text-align: center;
     border-radius: 16px;
+    font-size: 22px;
 }
 
 
