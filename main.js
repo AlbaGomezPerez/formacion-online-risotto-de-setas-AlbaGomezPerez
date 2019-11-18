@@ -2,6 +2,9 @@
 
 const ingredientsContainer = document.querySelector('.items-container');
 const subtotal = document.querySelector('.subtotal');
+const shipping = document.querySelector('.shipping');
+const total = document.querySelector('.total');
+const buy = document.querySelector('.buy-text');
 const url = "./ingredientsList.json";
 
 window.onload = function() {
@@ -60,12 +63,14 @@ function updateIngredientPrice(element) {
     for (let totalIngredientPrice of document.querySelectorAll('.item-totalPrice')){
         result += parseFloat(totalIngredientPrice.innerHTML);
         subtotal.innerHTML = result;
-        console.log(result);
-        // console.log('soy el' + totalIngredientPrice.innerHTML);
     }
 
-
-
+    //function which show total price with shipping price
+    const shippingValue = shipping.innerHTML;
+    const subtotalValue = subtotal.innerHTML;
+    const shippingSum = parseFloat(subtotalValue) + parseFloat(shippingValue);
+    total.innerHTML = parseFloat(shippingSum);
+    buy.innerHTML = 'Comprar ingredientes ' + parseFloat(shippingSum);
 }
 
 
