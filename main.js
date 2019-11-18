@@ -5,7 +5,6 @@ const subtotal = document.querySelector('.subtotal');
 const shipping = document.querySelector('.shipping');
 const total = document.querySelector('.total');
 const buy = document.querySelector('.buy-text');
-const currencies = document.querySelectorAll('.currency');
 let currency = '';
 const url = "./ingredientsList.json";
 
@@ -14,7 +13,7 @@ const url = "./ingredientsList.json";
  */
 function createQuantityInputEvents() {
     for (let inputAmount of document.querySelectorAll('.item-amount')) {
-        inputAmount.addEventListener('keyup', updateIngredientPrice);
+        inputAmount.addEventListener('keyup', updateIngredientPriceByEvent);
     }
 }
 
@@ -23,7 +22,7 @@ function createQuantityInputEvents() {
  */
 function createCheckboxEvents() {
     for (let checkbox of document.querySelectorAll('.item')) {
-        checkbox.addEventListener('click', updateIngredientPrice);
+        checkbox.addEventListener('click', updateIngredientPriceByEvent);
     }
 }
 
@@ -54,7 +53,6 @@ window.onload = function () {
         .then(response => response.json())
         .then(data => {
             currency = data.recipe.currency;
-
             setCurrency();
 
             data.recipe.ingredients.map((item, index) => {
@@ -63,7 +61,34 @@ window.onload = function () {
             createCheckboxEvents();
             createQuantityInputEvents();
         });
+    const selectAll = document.querySelector('.select');
+    selectAll.addEventListener('click', createSelectAllEvent);
+
+    const deselectAll = document.querySelector('.deselect');
+    deselectAll.addEventListener('click', createDeselectAllEvent);
 };
+
+/**
+ * Select all checkbox
+ */
+function createSelectAllEvent() {
+    const allCheckbox = document.querySelectorAll('.item');
+    for (let i = 0; i < allCheckbox.length; i++) {
+        allCheckbox[i].checked = true;
+        updateIngredientPrice(allCheckbox[i].id);
+    }
+}
+
+/**
+ * Deselect all checkbox
+ */
+function createDeselectAllEvent() {
+    const allCheckbox = document.querySelectorAll('.item');
+    for (let i = 0; i < allCheckbox.length; i++) {
+        allCheckbox[i].checked = false;
+        updateIngredientPrice(allCheckbox[i].id);
+    }
+}
 
 /**
  * Calculate the # of items selected and set the value in DOM
@@ -91,10 +116,13 @@ function calculateSubtotal() {
     subtotal.innerHTML = result.toFixed(2);
 }
 
-
-function calculateItemPrice(element) {
-    let id = (element.currentTarget.id).replace('checkbox_', '');
-    id = (id).replace('quantity_', '');
+/**
+ * Calculate item price
+ * @param id of the element changed or checked
+ */
+function calculateItemPrice(id) {
+    id = id.replace('checkbox_', '');
+    id = id.replace('quantity_', '');
 
     const checkbox = document.querySelector('#checkbox_' + id);
     const unitPrice = document.querySelector('#unitPrice_' + id);
@@ -123,15 +151,20 @@ function calculateTotalPrice() {
         total.innerHTML = 0;
         buy.innerHTML = 'Escoge un ingrediente';
     }
+}
 
+/**
+ * Update ingredient price by event
+ */
+function updateIngredientPriceByEvent(event) {
+    updateIngredientPrice(event.currentTarget.id);
 }
 
 /**
  *  Update ingredient price based on unit price and quantity if the ingredient is checked
- *  ToFixed is used to define number of the decimals
  */
-function updateIngredientPrice(element) {
-    calculateItemPrice(element);
+function updateIngredientPrice(id) {
+    calculateItemPrice(id);
     calculateTotalItems();
     calculateSubtotal();
     calculateTotalPrice();
