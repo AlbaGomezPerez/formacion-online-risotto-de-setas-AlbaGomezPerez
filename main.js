@@ -32,9 +32,10 @@ window.onload = function() {
 
             for (let checkbox of document.querySelectorAll('.item')){
                 checkbox.addEventListener('click', updateIngredientPrice);
+                // checkbox.addEventListener('click', subtotalPrice);
             }
 
-            // checkbox.addEventListener('click', subtotalPrice);
+
         });
 };
 
@@ -48,34 +49,44 @@ function updateIngredientPrice(element) {
     const inputAmount = document.querySelector('#quantity_' + id);
     const totalPrice = document.querySelector('#totalPrice_' + id);
 
-
-
     if (checkbox.checked === true) {
         totalPrice.innerHTML = (parseInt(inputAmount.value) * parseFloat(unitPrice.innerHTML)).toFixed(2);
     } else {
         totalPrice.innerHTML = '0 €';
     }
+
+    //function which sum all total price ingredient and paint it in subtotal section
+    let result = 0;
+    for (let totalIngredientPrice of document.querySelectorAll('.item-totalPrice')){
+        result += parseFloat(totalIngredientPrice.innerHTML);
+        subtotal.innerHTML = result;
+        console.log(result);
+        // console.log('soy el' + totalIngredientPrice.innerHTML);
+    }
+
+
+
 }
 
 
 //function which give amount of items that it had been checked
-function amountItems() {
+// function amountItems() {
 //    recorrer todos los checkbox y contar cuantos hay en True. Bucle y luego un lenght?
 //    meterlo en el sumItems
-}
+// }
 
 //function which give subtotalPrice
 // function subtotalPrice(){
-//     const totalIngredientPrice = document.querySelector('.item-unitPrice');
-//     console.log(totalIngredientPrice.currentTarget.value);
+//     console.log('estoy aqui');
+    // const totalIngredientPrice = document.querySelectorAll('.item-totalPrice');
+    // console.log(totalIngredientPrice.innerHTML);
     // subtotal.innerHTML = totalIngredientPrice.currentTarget.value;
-//    hay que recoger el valor de todos los valor total del producto y sumarlas, el restultado guardarlo aqui
 // }
 
 //function which give total price to buy
-function totalPrice() {
+// function totalPrice() {
 //    por innerHtml hay que pintar la cantidad en total (donde ahora hay 45€)
 //    y también añadir con esto += lo mismo al apartado de "comprar ingredientes.
-}
+// }
 
 
