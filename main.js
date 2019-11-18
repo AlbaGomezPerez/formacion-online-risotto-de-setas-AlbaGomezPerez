@@ -75,9 +75,10 @@ function calculateSubtotal() {
     let result = 0;
     for (let totalIngredientPrice of document.querySelectorAll('.item-totalPrice')) {
         result += parseFloat(totalIngredientPrice.innerHTML);
-        subtotal.innerHTML = result;
     }
+    subtotal.innerHTML = result.toFixed(2);
 }
+
 
 function calculateItemPrice(element) {
     let id = (element.currentTarget.id).replace('checkbox_', '');
