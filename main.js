@@ -102,8 +102,15 @@ function calculateTotalPrice() {
     const shippingValue = shipping.innerHTML;
     const subtotalValue = subtotal.innerHTML;
     const shippingSum = parseFloat(subtotalValue) + parseFloat(shippingValue);
-    total.innerHTML = parseFloat(shippingSum);
-    buy.innerHTML = 'Comprar ingredientes ' + parseFloat(shippingSum);
+
+    if(calculateTotalItems() > 0){
+        total.innerHTML = parseFloat(shippingSum);
+        buy.innerHTML = 'Comprar ingredientes ' + parseFloat(shippingSum);
+    } else{
+        total.innerHTML = 0;
+        buy.innerHTML = 'Escoge un ingrediente';
+    }
+
 }
 
 /**
